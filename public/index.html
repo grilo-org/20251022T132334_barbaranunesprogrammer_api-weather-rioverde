@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Documentação da API pública para dados de clima e lua de Rio Verde, GO.">
+  <title>API Pública - Clima & Lua de Rio Verde</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <header>
+    <h1>API Pública - Clima & Lua de Rio Verde-GO Brasil</h1>
+    <p>
+      Bem-vindo! Esta API fornece acesso gratuito e público a dados meteorológicos e astronômicos para a cidade de <strong>Rio Verde, Goiás</strong>.
+      Obtenha facilmente informações como temperatura atual, previsão para os próximos dias e fases da lua.
+      <br><br>
+      A API é <strong>pública</strong> e pode ser usada por qualquer pessoa, sem necessidade de chave de autenticação.<br>
+      <strong>Base URL:</strong> 
+      <code>https://api-weather-rioverde-go.onrender.com/</code>
+    </p>
+ 
+    <nav>
+      <a href="#como-usar">Como Usar</a>
+      <a href="#endpoints">Endpoints</a>
+      <a href="#exemplos">Exemplos</a>
+      <a href="#testando">Testando</a>
+      <a href="#notas">Notas</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="como-usar">
+      <h2>Como Usar</h2>
+      <ul>
+        <li>Faça uma requisição GET para <code>/tempo/rioverde</code> para obter o clima atual.</li>
+        <li>Exemplo: <code>GET https://api-weather-rioverde-go.onrender.com/tempo/rioverde</code></li>
+        <li>Veja a documentação completa abaixo para mais detalhes.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Limites</h2>
+      <ul>
+        <li class="limite">Sem autenticação, mas com limite de 1000 requisições/dia por IP.</li>
+        <li>Se precisar de mais, entre em contato.</li>
+      </ul>
+    </section>
+
+    <section id="endpoints">
+      <h2>Endpoints</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Endpoint</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GET</td>
+            <td><code>/tempo/rioverde</code></td>
+            <td>Retorna o clima atual de Rio Verde</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td><code>/rioverde/moon</code></td>
+            <td>Retorna a fase da lua e dados astronômicos atuais</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td><code>/previsao/rioverde/:data</code></td>
+            <td>Retorna previsão do tempo e dados astronômicos para uma data futura</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+  <h2>Consultar Previsão para Data Específica</h2>
+  <label for="data-previsao">Escolha a data da previsão:</label>
+  <input type="date" id="data-previsao">
+  <button onclick="buscarPrevisao()">Ver previsão para a data</button>
+  <pre id="resultado-previsao"></pre>
+</section>
+
+    <section id="exemplos">
+      <h2>Exemplos de Uso</h2>
+      <label for="caminho-input">Digite o caminho da API:</label>
+      <input type="text" id="caminho-input" placeholder="/tempo/rioverde">
+      <button onclick="buscarEndpoint()">Buscar</button>
+      <pre id="resultado-exemplo"></pre>
+
+      
+
+      <h3>1. Clima Atual</h3>
+      <p><strong>Requisição:</strong></p>
+      <pre>GET https://api-weather-rioverde-go.onrender.com/tempo/rioverde</pre>
+      <p><strong>Resposta:</strong></p>
+
+   
+      <pre>{
+  
+    "cidade": "Rio Verde",
+    "regiao": "Goias",
+    "pais": "Brazil",
+    "hora_local": "2025-08-08 20:48",
+    "temperatura_c": 23,
+    "sensacao_termica_c": 23.9,
+    "umidade": 33,
+    "condicao": "Céu limpo",
+    "vento_kph": 17.6,
+    "direcao_vento": "SSW",
+    "pressao_mb": 1015,
+    "precipitacao_mm": 0,
+    "nebulosidade": 5,
+    "indice_uv": 0,
+    "icone": "//cdn.weatherapi.com/weather/64x64/night/113.png"
+      }
+</pre>
+      <p><strong>Erros Possíveis:</strong></p>
+      <ul>
+        <li>400 - Erro da API externa</li>
+        <li>500 - Erro interno ao buscar os dados climáticos</li>
+      </ul>
+
+      <h3>2. Fase da Lua Atual</h3>
+      <p><strong>Requisição:</strong></p>
+      <pre>GET https://api-weather-rioverde-go.onrender.com/rioverde/moon</pre>
+      <p><strong>Resposta:</strong></p>
+      <pre>{
+  "cidade": "Rio Verde",
+  "data": "07/08/2025",
+  "fase_da_lua": "Quarto Crescente",
+  "iluminacao": "55%"
+}</pre>
+      <p><strong>Erros Possíveis:</strong></p>
+      <ul>
+        <li>400 - Dados astronômicos não encontrados</li>
+        <li>500 - Erro interno ao buscar dados da lua</li>
+      </ul>
+
+      <h3>3. Previsão Futura</h3>
+      <p><strong>Requisição:</strong></p>
+      <pre>GET https://api-weather-rioverde-go.onrender.com/previsao/rioverde/2025-08-10</pre>
+      <p><strong>Parâmetros:</strong></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Parâmetro</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+            <th>Exemplo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>data</td>
+            <td>string</td>
+            <td>Data no formato <code>aaaa-mm-dd</code></td>
+            <td>2025-08-10</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Limite:</strong> Apenas até 3 dias à frente da data atual (limite do plano gratuito da WeatherAPI).</p>
+      <p><strong>Resposta:</strong></p>
+      <pre>{
+  "cidade": "Rio Verde",
+  "data": "10/08/2025",
+  "max_temp_c": 31.0,
+  "min_temp_c": 18.5,
+  "media_temp_c": 25.0,
+  "vento_kph": 15.6,
+  "umidade": 60,
+  "condicao": "Parcialmente nublado",
+  "icone": "//cdn.weatherapi.com/weather/64x64/day/116.png",
+  "nascer_do_sol": "06:10 AM",
+  "por_do_sol": "06:45 PM",
+  "nascer_da_lua": "07:00 PM",
+  "por_da_lua": "05:50 AM",
+  "fase_da_lua": "Lua Cheia",
+  "iluminacao_lua": "98%"
+}</pre>
+      <p><strong>Erros Possíveis:</strong></p>
+      <ul>
+        <li>400 - Data inválida ou fora do limite do plano gratuito</li>
+        <li>500 - Erro interno ao buscar previsão</li>
+      </ul>
+    </section>
+
+    <section id="testando">
+      <h2>Testando a API</h2>
+      <p>Você pode testar os endpoints usando <code>curl</code>, Postman ou seu navegador.</p>
+      <ul>
+        <li><strong>curl:</strong> <code>curl https://api-weather-rioverde-go.onrender.com/tempo/rioverde</code></li>
+        <li><strong>Navegador:</strong> Cole a URL na barra de endereços</li>
+        <li><strong>Postman:</strong> Crie uma requisição GET para o endpoint desejado</li>
+      </ul>
+      <p>Ou clique no botão abaixo para ver o clima atual:</p>
+      <button onclick="buscarClima()">Ver clima agora</button>
+      <pre id="resultado-clima"></pre>
+    </section>
+
+    <section id="notas">
+      <h2>Notas</h2>
+      <ul>
+        <li>Certifique-se de que a URL está correta.</li>
+        <li>Se a API estiver fora do ar, aguarde alguns minutos e tente novamente.</li>
+        <li>Em caso de dúvidas, consulte o responsável pela API.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+     Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a>
+    </p>
+    <a href="https://www.weatherapi.com/" title="Free Weather API"><img src='//cdn.weatherapi.com/v4/images/weatherapi_logo.png' alt="Weather data by WeatherAPI.com" border="0"></a>
+    <p>
+      Desenvolvido por Bárbara Nunes. Conecte-se:
+      <a href="https://github.com/barbaranunesprogrammer" target="_blank" rel="noopener noreferrer">GitHub</a> |
+      <a href="https://www.linkedin.com/in/barbaranunesprogrammer/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+
+</html>

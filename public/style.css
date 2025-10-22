@@ -1,0 +1,136 @@
+/* =======================
+   Estilo de documentação API
+   Inspirado no PokeAPI + Verde do interior
+   ======================= */
+
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 20px;
+  background-color: #f7f9f7; /* cinza-esverdeado claro */
+  color: #2f3e2f; /* verde escuro para texto */
+}
+
+/* Cabeçalho */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  margin-bottom: 8px;
+  color: #2e5e3e; /* verde destaque */
+}
+
+header p {
+  font-size: 0.95em;
+  color: #4a5a4a;
+}
+
+/* Links */
+a {
+  color: #2e5e3e;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Seções */
+section {
+  margin-bottom: 30px;
+  background-color: #ffffff; /* caixa branca */
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #dfe4df;
+}
+
+/* Bloco de código */
+pre {
+  background-color: #eef2ef; /* cinza com toque verde */
+  padding: 1em;
+  border-radius: 5px;
+  font-size: 0.9em;
+  overflow-x: auto;
+  border: 1px solid #cfd5cf;
+}
+
+/* Código inline */
+code {
+  background-color: #e4ebe4; /* verde muito claro */
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+/* Tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  background-color: #ffffff;
+}
+
+th, td {
+  border: 1px solid #dfe4df;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f4f0;
+  color: #2e5e3e;
+}
+
+/* Inputs e botões */
+input, 
+select {
+  width: 250px;
+  padding: 6px;
+  font-size: 0.9em;
+  border: 1px solid #cfd5cf;
+  border-radius: 3px;
+  background-color: #fafdfa; /* verde bem clarinho */
+}
+
+button {
+  padding: 6px 12px;
+  font-size: 0.9em;
+  background-color: #2e5e3e;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3c7a53;
+}
+
+/* Área de saída de dados */
+.output {
+  background-color: #eef5ee; /* verde suave */
+  border: 1px solid #cfd5cf;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  color: #2f3e2f;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #dfe4df;
+  font-size: 0.9em;
+  color: #4a5a4a;
+}
+
+footer a {
+  color: #2e5e3e;
+}
